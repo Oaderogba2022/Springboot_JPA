@@ -27,4 +27,17 @@ public class ProductService {
         return false;  // Return false if product is not found
     }
 
+    public Product updateProduct(Long id, Product updatedProduct) {
+        Product existingProduct = productRepository.findById(id).orElse(null);
+        if (existingProduct != null) {
+            existingProduct.setProductName(updatedProduct.getProductName());
+            existingProduct.setProductDescription(updatedProduct.getProductDescription());
+            existingProduct.setProductPrice(updatedProduct.getProductPrice());
+            existingProduct.setProductCode(updatedProduct.getProductCode());
+            return productRepository.save(existingProduct);
+        }
+        return null;
+    }
+
+
 }
