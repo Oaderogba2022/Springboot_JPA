@@ -16,10 +16,9 @@ public class ProductController {
         this.productService = productService;
     }
 
-
     @GetMapping("/getProducts")
     public List<Product> getProducts() {
-        return productList;
+        return productService.getAllProducts();  // Retrieves all products from the database
     }
 
     @PostMapping("/addProduct")
