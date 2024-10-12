@@ -17,4 +17,14 @@ public class ProductService {
         return productRepository.findAll();
 
    }
+
+    public boolean deleteProduct(Long id) {
+        Product existingProduct = productRepository.findById(id).orElse(null);
+        if (existingProduct != null) {
+            productRepository.delete(existingProduct);  // Delete the product
+            return true;
+        }
+        return false;  // Return false if product is not found
+    }
+
 }

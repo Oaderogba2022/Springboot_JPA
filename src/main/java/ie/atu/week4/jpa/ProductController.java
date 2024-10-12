@@ -52,14 +52,14 @@ public class ProductController {
     }
 
     @DeleteMapping("/deleteProduct/{id}")
-    public ResponseEntity<List<Product>> deleteProduct(@PathVariable int id) {
-        Product existingProduct = findProductById(id);
-
-        if (existingProduct != null) {
-            productList.remove(existingProduct);
-            return ResponseEntity.ok(productList);
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        boolean isDeleted = productService.deleteProduct(id);
+        if (isDeleted) {
+            return ResponseEntity.ok().build();  // Product deleted successfully
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.notFound().build();  // Product not found
         }
     }
+
+
 }
