@@ -39,5 +39,10 @@ public class ProductService {
         return null;
     }
 
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+
 
 }
